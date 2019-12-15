@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import YouTube from "./components/YouTube";
+import YouTube from './components/YouTube';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     YouTube
   }

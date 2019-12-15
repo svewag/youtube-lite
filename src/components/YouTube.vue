@@ -26,11 +26,11 @@
 </template>
 
 <script>
-const embedUrlBase = "https://www.youtube.com/embed";
-const thumbUrlBase = "https://i.ytimg.com/vi";
+const embedUrlBase = 'https://www.youtube.com/embed';
+const thumbUrlBase = 'https://i.ytimg.com/vi';
 
 export default {
-  name: "YouTube",
+  name: 'YouTube',
   props: {
     aspect: {
       type: Number,
@@ -42,7 +42,7 @@ export default {
     },
     thumbQuality: {
       type: String,
-      default: "sd" /* mq, hq, sd - ascending order of resolution */
+      default: 'sd' /* mq, hq, sd - ascending order of resolution */
     }
   },
   data() {
@@ -53,27 +53,27 @@ export default {
   },
   computed: {
     src() {
-      return [embedUrlBase, this.vid].join("/") + "?autoplay=1";
+      return [embedUrlBase, this.vid].join('/') + '?autoplay=1';
     },
     thumbUrl() {
       return [thumbUrlBase, this.vid, `${this.thumbQuality}default.jpg`].join(
-        "/"
+        '/'
       );
     },
     wrapperStyle() {
       return {
-        "padding-bottom": `${this.aspect * 100}%`
+        'padding-bottom': `${this.aspect * 100}%`
       };
     },
     thumbStyle() {
       return {
-        "background-image": `url(${this.thumbUrl})`
+        'background-image': `url(${this.thumbUrl})`
       };
     }
   },
   methods: {
     addPrefetch(kind, url, as) {
-      const linkElem = document.createElement("link");
+      const linkElem = document.createElement('link');
       linkElem.rel = kind;
       linkElem.href = url;
       if (as) {
@@ -84,10 +84,10 @@ export default {
     },
     warmup() {
       if (!this.hasPreconnected) {
-        this.addPrefetch("preconnect", "https://www.youtube.com");
-        this.addPrefetch("preconnect", "https://www.google.com");
-        this.addPrefetch("preconnect", "https://googleads.g.doubleclick.net");
-        this.addPrefetch("preconnect", "https://static.doubleclick.net");
+        this.addPrefetch('preconnect', 'https://www.youtube.com');
+        this.addPrefetch('preconnect', 'https://www.google.com');
+        this.addPrefetch('preconnect', 'https://googleads.g.doubleclick.net');
+        this.addPrefetch('preconnect', 'https://static.doubleclick.net');
 
         this.hasPreconnected = true;
       }
@@ -97,7 +97,7 @@ export default {
     }
   },
   created() {
-    this.addPrefetch("preload", this.thumbUrl, "image");
+    this.addPrefetch('preload', this.thumbUrl, 'image');
   }
 };
 </script>
